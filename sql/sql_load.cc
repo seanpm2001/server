@@ -677,14 +677,9 @@ int mysql_load(THD *thd, const sql_exchange *ex, TABLE_LIST *table_list,
 
     thd->abort_on_warning= !ignore && thd->is_strict_mode();
 
-    bool create_lookup_handler= handle_duplicates != DUP_ERROR;
-    if ((table_list->table->file->ha_table_flags() & HA_DUPLICATE_POS))
-    {
-      create_lookup_handler= true;
-      if ((error= table_list->table->file->ha_rnd_init_with_error(0)))
-        goto err;
-    }
-    table->file->prepare_for_insert(create_lookup_handler);
+    if (prepare_for_replace(table, info.handle_duplicates, info.ignore))
+      DBUG_RETURN(1);
+
     thd_progress_init(thd, 2);
     if (table_list->table->validate_default_values_of_unset_fields(thd))
     {
@@ -704,8 +699,8 @@ int mysql_load(THD *thd, const sql_exchange *ex, TABLE_LIST *table_list,
                             set_fields, set_values, read_info,
                             *ex->enclosed, skip_lines, ignore);
 
-    if (table_list->table->file->ha_table_flags() & HA_DUPLICATE_POS)
-      table_list->table->file->ha_rnd_end();
+    if (unlikely(finalize_replace(table, handle_duplicates, ignore)))
+      DBUG_RETURN(1);
 
     thd_proc_info(thd, "End bulk insert");
     if (likely(!error))
