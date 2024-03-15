@@ -266,7 +266,10 @@ static bool btr_pcur_optimistic_latch_leaves(btr_pcur_t *pcur,
 
   mtr->upgrade_buffer_fix(savepoint, mode);
 
-  if (UNIV_UNLIKELY(block->modify_clock != modify_clock))
+  if (UNIV_UNLIKELY(block->modify_clock != modify_clock) ||
+      (prev &&
+       memcmp_aligned<4>(FIL_PAGE_NEXT + prev->page.frame,
+                         FIL_PAGE_OFFSET + page, 4)))
     goto fail;
 
   return true;
