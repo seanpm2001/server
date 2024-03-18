@@ -5628,14 +5628,6 @@ int spider_db_mbase_util::check_item_func(
       break;
     case Item_func::FUNC_SP:
     case Item_func::UDF_FUNC:
-      /* Notes on merging regarding MDEV-29447: please refer to the
-      following commits for build error or merge conflicts:
-      10.5: d7b564da2a634dcf86798d6b86bd127e7eef9286
-      10.6: 1ed20b993b0dd4e95450cab2e8347e5bf4617a69
-      10.9: dd316b6e20265cfd832bb5585cb4c96e716387c8
-      10.10-11: 3f67f110ba1b23a89c5ede0fbeeb203cf5e164f4
-      11.0-1: 17ba6748afa8834df5658361088e6c8e65aca16f
-      Please remove this comment after merging. */
       use_pushdown_udf= spider_param_use_pushdown_udf(
           spider->trx->thd, spider->share->use_pushdown_udf);
       if (!use_pushdown_udf)
@@ -5651,6 +5643,17 @@ int spider_db_mbase_util::check_item_func(
         DBUG_RETURN(ER_SPIDER_COND_SKIP_NUM);
       break;
 #endif
+    case Item_func::MULT_EQUAL_FUNC:
+      /* If there is still Item_equal by the time of
+      JOIN::make_aggr_tables_info() where the spider group by handler
+      is created, it indicates a bug in the optimizer, because there
+      shouldn't be any. */
+      push_warning_printf(
+        spider->trx->thd, SPIDER_WARN_LEVEL_WARN, ER_INTERNAL_ERROR,
+        ER_THD(spider->trx->thd, ER_INTERNAL_ERROR),
+        "Spider group by handler: Encountered multiple equalities, likely "
+        "an optimizer bug");
+      DBUG_RETURN(ER_SPIDER_COND_SKIP_NUM);
     default:
       break;
   }
@@ -6581,6 +6584,17 @@ int spider_db_mbase_util::print_item_func(
       last_str = SPIDER_SQL_CLOSE_PAREN_STR;
       last_str_length = SPIDER_SQL_CLOSE_PAREN_LEN;
       break;
+    case Item_func::MULT_EQUAL_FUNC:
+      /* If there is still Item_equal by the time of
+      JOIN::make_aggr_tables_info() where the spider group by handler
+      is created, it indicates a bug in the optimizer, because there
+      shouldn't be any. */
+      push_warning_printf(
+        spider->trx->thd, SPIDER_WARN_LEVEL_WARN, ER_INTERNAL_ERROR,
+        ER_THD(spider->trx->thd, ER_INTERNAL_ERROR),
+        "Spider group by handler: Encountered multiple equalities, likely "
+        "an optimizer bug");
+      DBUG_RETURN(ER_SPIDER_COND_SKIP_NUM);
     default:
       THD *thd = spider->trx->thd;
       SPIDER_SHARE *share = spider->share;
