@@ -2813,7 +2813,6 @@ re_evict_fail:
 		if (UNIV_UNLIKELY(block->page.id() != page_id)) {
 			ut_ad(state >= buf_page_t::READ_FIX
 			      && state < buf_page_t::WRITE_FIX);
-page_id_mismatch:
 			state = block->page.state();
 			e = DB_CORRUPTION;
 ibuf_merge_corrupted:
@@ -2861,25 +2860,19 @@ ibuf_merge_corrupted:
 		default:
 			ut_ad(rw_latch == RW_X_LATCH);
 		}
+
+		mtr->memo_push(block, mtr_memo_type_t(rw_latch));
 	} else {
 		switch (rw_latch) {
 		case RW_NO_LATCH:
+			mtr->memo_push(block, MTR_MEMO_BUF_FIX);
+			return block;
 		case RW_S_LATCH:
 			block->page.lock.s_lock();
-			ut_ad(!block->page.is_read_fixed());
-			if (UNIV_UNLIKELY(block->page.id() != page_id)) {
-				block->page.lock.s_unlock();
-				block->page.lock.x_lock();
-				goto page_id_mismatch;
-			}
 			break;
 		case RW_SX_LATCH:
 			block->page.lock.u_lock();
 			ut_ad(!block->page.is_io_fixed());
-			if (UNIV_UNLIKELY(block->page.id() != page_id)) {
-				block->page.lock.u_x_upgrade();
-				goto page_id_mismatch;
-			}
 			break;
 		default:
 			ut_ad(rw_latch == RW_X_LATCH);
@@ -2889,22 +2882,20 @@ ibuf_merge_corrupted:
 				mtr->page_lock_upgrade(*block);
 				return block;
 			}
-			if (UNIV_UNLIKELY(block->page.id() != page_id)) {
-				goto page_id_mismatch;
-			}
 		}
 
+		mtr->memo_push(block, mtr_memo_type_t(rw_latch));
 		state = block->page.state();
 
 		if (UNIV_UNLIKELY(state < buf_page_t::UNFIXED)) {
 			switch (rw_latch) {
-			default:
+			case RW_S_LATCH:
 				block->page.lock.s_unlock();
 				break;
 			case RW_SX_LATCH:
 				block->page.lock.u_unlock();
 				break;
-			case RW_X_LATCH:
+			default:
 				block->page.lock.x_unlock();
 				break;
 			}
@@ -2917,12 +2908,8 @@ ibuf_merge_corrupted:
 #ifdef BTR_CUR_HASH_ADAPT
 		btr_search_drop_page_hash_index(block, true);
 #endif /* BTR_CUR_HASH_ADAPT */
-		if (rw_latch == RW_NO_LATCH) {
-			block->page.lock.s_unlock();
-		}
 	}
 
-	mtr->memo_push(block, mtr_memo_type_t(rw_latch));
 	ut_ad(page_id_t(page_get_space_id(block->page.frame),
 			page_get_page_no(block->page.frame)) == page_id);
 	return block;
