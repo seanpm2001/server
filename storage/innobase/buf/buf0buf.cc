@@ -2808,17 +2808,11 @@ re_evict_fail:
 	    && fil_page_get_type(block->page.frame) == FIL_PAGE_INDEX
 	    && page_is_leaf(block->page.frame)) {
 		block->page.lock.x_lock();
-		ut_ad(block->page.id() == page_id
-		      || (state >= buf_page_t::READ_FIX
-			  && state < buf_page_t::WRITE_FIX));
-
-#ifdef BTR_CUR_HASH_ADAPT
-		btr_search_drop_page_hash_index(block, true);
-#endif /* BTR_CUR_HASH_ADAPT */
-
 		dberr_t e;
 
 		if (UNIV_UNLIKELY(block->page.id() != page_id)) {
+			ut_ad(state >= buf_page_t::READ_FIX
+			      && state < buf_page_t::WRITE_FIX);
 page_id_mismatch:
 			state = block->page.state();
 			e = DB_CORRUPTION;
@@ -2844,20 +2838,32 @@ ibuf_merge_corrupted:
 			if (UNIV_UNLIKELY(e != DB_SUCCESS)) {
 				goto ibuf_merge_corrupted;
 			}
+		} else if (state < buf_page_t::UNFIXED) {
+			block->page.lock.x_unlock();
+			goto ignore_block;
 		}
 
-		if (rw_latch == RW_X_LATCH) {
-			goto get_latch_valid;
-		} else {
-			block->page.lock.x_unlock();
-			goto get_latch;
-		}
-	} else {
-get_latch:
+#ifdef BTR_CUR_HASH_ADAPT
+		btr_search_drop_page_hash_index(block, true);
+#endif /* BTR_CUR_HASH_ADAPT */
+
 		switch (rw_latch) {
 		case RW_NO_LATCH:
-			mtr->memo_push(block, MTR_MEMO_BUF_FIX);
-			return block;
+			block->page.lock.x_unlock();
+			break;
+		case RW_S_LATCH:
+			block->page.lock.x_unlock();
+			block->page.lock.s_lock();
+			break;
+		case RW_SX_LATCH:
+			block->page.lock.x_u_downgrade();
+			break;
+		default:
+			ut_ad(rw_latch == RW_X_LATCH);
+		}
+	} else {
+		switch (rw_latch) {
+		case RW_NO_LATCH:
 		case RW_S_LATCH:
 			block->page.lock.s_lock();
 			ut_ad(!block->page.is_read_fixed());
@@ -2866,11 +2872,6 @@ get_latch:
 				block->page.lock.x_lock();
 				goto page_id_mismatch;
 			}
-get_latch_valid:
-			mtr->memo_push(block, mtr_memo_type_t(rw_latch));
-#ifdef BTR_CUR_HASH_ADAPT
-			btr_search_drop_page_hash_index(block, true);
-#endif /* BTR_CUR_HASH_ADAPT */
 			break;
 		case RW_SX_LATCH:
 			block->page.lock.u_lock();
@@ -2879,7 +2880,7 @@ get_latch_valid:
 				block->page.lock.u_x_upgrade();
 				goto page_id_mismatch;
 			}
-			goto get_latch_valid;
+			break;
 		default:
 			ut_ad(rw_latch == RW_X_LATCH);
 			if (block->page.lock.x_lock_upgraded()) {
@@ -2891,14 +2892,39 @@ get_latch_valid:
 			if (UNIV_UNLIKELY(block->page.id() != page_id)) {
 				goto page_id_mismatch;
 			}
-			goto get_latch_valid;
 		}
 
-		ut_ad(page_id_t(page_get_space_id(block->page.frame),
-				page_get_page_no(block->page.frame))
-		      == page_id);
+		state = block->page.state();
+
+		if (UNIV_UNLIKELY(state < buf_page_t::UNFIXED)) {
+			switch (rw_latch) {
+			default:
+				block->page.lock.s_unlock();
+				break;
+			case RW_SX_LATCH:
+				block->page.lock.u_unlock();
+				break;
+			case RW_X_LATCH:
+				block->page.lock.x_unlock();
+				break;
+			}
+			goto ignore_block;
+		}
+
+		ut_ad(state < buf_page_t::READ_FIX
+		      || state > buf_page_t::WRITE_FIX);
+
+#ifdef BTR_CUR_HASH_ADAPT
+		btr_search_drop_page_hash_index(block, true);
+#endif /* BTR_CUR_HASH_ADAPT */
+		if (rw_latch == RW_NO_LATCH) {
+			block->page.lock.s_unlock();
+		}
 	}
 
+	mtr->memo_push(block, mtr_memo_type_t(rw_latch));
+	ut_ad(page_id_t(page_get_space_id(block->page.frame),
+			page_get_page_no(block->page.frame)) == page_id);
 	return block;
 }
 
