@@ -1348,6 +1348,9 @@ int multi_delete::do_table_deletes(TABLE *table, SORT_INFO *sort_info,
   ha_rows last_deleted= deleted;
   DBUG_ENTER("do_deletes_for_table");
 
+  if (table->file->pushed_rowid_filter)
+      table->file->disable_pushed_rowid_filter();
+
   if (unlikely(init_read_record(&info, thd, table, NULL, sort_info, 0, 1,
                                 FALSE)))
     DBUG_RETURN(1);
@@ -1400,6 +1403,9 @@ int multi_delete::do_table_deletes(TABLE *table, SORT_INFO *sort_info,
     thd->transaction->stmt.modified_non_trans_table= TRUE;
 
   end_read_record(&info);
+
+  if (table->file->save_pushed_rowid_filter)
+    table->file->enable_pushed_rowid_filter();
 
   DBUG_RETURN(local_error);
 }
