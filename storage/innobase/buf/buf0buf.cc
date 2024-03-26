@@ -2562,9 +2562,10 @@ got_block_fixed:
 	if (state > buf_page_t::READ_FIX && state < buf_page_t::WRITE_FIX) {
 		if (mode == BUF_PEEK_IF_IN_POOL) {
 ignore_block:
+			block->unfix();
+ignore_unfixed:
 			ut_ad(mode == BUF_GET_POSSIBLY_FREED
 			      || mode == BUF_PEEK_IF_IN_POOL);
-			block->unfix();
 			if (err) {
 				*err = DB_CORRUPTION;
 			}
@@ -2889,18 +2890,8 @@ ibuf_merge_corrupted:
 		state = block->page.state();
 
 		if (UNIV_UNLIKELY(state < buf_page_t::UNFIXED)) {
-			switch (rw_latch) {
-			case RW_S_LATCH:
-				block->page.lock.s_unlock();
-				break;
-			case RW_SX_LATCH:
-				block->page.lock.u_unlock();
-				break;
-			default:
-				block->page.lock.x_unlock();
-				break;
-			}
-			goto ignore_block;
+			mtr->release_last_page();
+			goto ignore_unfixed;
 		}
 
 		ut_ad(state < buf_page_t::READ_FIX
