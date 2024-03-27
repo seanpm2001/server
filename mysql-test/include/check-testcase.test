@@ -154,7 +154,7 @@ if (`SELECT COUNT(*)=1 FROM INFORMATION_SCHEMA.PLUGINS WHERE PLUGIN_NAME = 'wsre
   }
 }
 
-SELECT * FROM performance_schema.objects_summary_global_by_type WHERE object_schema='test';
+SELECT * FROM performance_schema.objects_summary_global_by_type WHERE object_schema='test' AND object_name ='user';
 
 --enable_query_log
 
