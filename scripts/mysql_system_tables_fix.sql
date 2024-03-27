@@ -30,7 +30,7 @@ set default_storage_engine=Aria;
 set enforce_storage_engine=NULL;
 set alter_algorithm='DEFAULT';
 
-SELECT "Beginning of system_tables_fix", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+SELECT "Beginning of system_tables_fix", object_name FROM performance_schema.objects_summary_global_by_type
 WHERE object_schema='test' order by object_name;
 
 set @have_innodb= (select count(engine) from information_schema.engines where engine='INNODB' and support != 'NO');
@@ -49,9 +49,6 @@ ALTER TABLE db add Grant_priv enum('N','Y') COLLATE utf8_general_ci DEFAULT 'N' 
                add References_priv enum('N','Y') COLLATE utf8_general_ci DEFAULT 'N' NOT NULL,
                add Index_priv enum('N','Y') COLLATE utf8_general_ci DEFAULT 'N' NOT NULL,
                add Alter_priv enum('N','Y') COLLATE utf8_general_ci DEFAULT 'N' NOT NULL;
-
-SELECT "system_tables_fix, after first ALTERs", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
-WHERE object_schema='test' order by object_name;
 
 # Fix privileges for old tables
 UPDATE user SET Grant_priv=File_priv,References_priv=Create_priv,Index_priv=Create_priv,Alter_priv=Create_priv WHERE @hadGrantPriv = 0;
@@ -73,6 +70,9 @@ ALTER TABLE user MODIFY ssl_type enum('','ANY','X509', 'SPECIFIED') DEFAULT '' N
 ALTER TABLE tables_priv
   ADD KEY Grantor (Grantor);
 
+SELECT "before ALTERing tables_priv to Aria", object_name FROM performance_schema.objects_summary_global_by_type
+WHERE object_schema='test' AND object_name = 'tables_priv' order by object_name;
+
 ALTER TABLE tables_priv
   MODIFY Host char(60) NOT NULL default '',
   MODIFY Db char(64) NOT NULL default '',
@@ -81,6 +81,9 @@ ALTER TABLE tables_priv
   MODIFY Grantor char(141) COLLATE utf8_bin NOT NULL default '',
   ENGINE=Aria,
   CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin;
+
+SELECT "after ALTERing tables_priv to Aria", object_name FROM performance_schema.objects_summary_global_by_type
+WHERE object_schema='test' AND object_name = 'tables_priv' order by object_name;
 
 ALTER TABLE tables_priv
   MODIFY Column_priv set('Select','Insert','Update','References')
@@ -167,8 +170,8 @@ alter table db comment='Database privileges';
 alter table user comment='Users and global privileges';
 alter table func comment='User defined functions';
 
-SELECT "system_tables_fix, before ALTERing user to Aria", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
-WHERE object_schema='test' order by object_name;
+SELECT "system_tables_fix, before ALTERing user to Aria", object_name FROM performance_schema.objects_summary_global_by_type
+WHERE object_schema='test' AND object_name = 'user' order by object_name;
 
 # Convert all tables to UTF-8 with binary collation
 # and reset all char columns to correct width
@@ -176,6 +179,9 @@ ALTER TABLE user
   MODIFY Host char(60) NOT NULL default '',
   MODIFY User char(80) binary NOT NULL default '',
   ENGINE=Aria, CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin;
+
+SELECT "system_tables_fix, after ALTERing user to Aria", object_name FROM performance_schema.objects_summary_global_by_type
+WHERE object_schema='test' AND object_name = 'user' order by object_name;
 
 # In MySQL 5.7.6 the Password column is removed. Recreate it to preserve the number
 # of columns MariaDB expects in the user table.
@@ -769,7 +775,7 @@ DELETE FROM mysql.plugin WHERE name="rpl_semi_sync_slave" AND NOT EXISTS (SELECT
 -- Ensure that all tables are of type Aria and transactional
 --
 
-SELECT "system_tables_fix, before massive ALTER to Aria", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+SELECT "system_tables_fix, before massive ALTER to Aria", object_name FROM performance_schema.objects_summary_global_by_type
 WHERE object_schema='test' order by object_name;
 
 ALTER TABLE user ENGINE=Aria transactional=1;
@@ -799,7 +805,7 @@ ALTER TABLE table_stats ENGINE=Aria transactional=0;
 ALTER TABLE column_stats ENGINE=Aria transactional=0;
 ALTER TABLE index_stats ENGINE=Aria transactional=0;
 
-SELECT "system_tables_fix, after massive ALTER to Aria", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+SELECT "system_tables_fix, after massive ALTER to Aria", object_name FROM performance_schema.objects_summary_global_by_type
 WHERE object_schema='test' order by object_name;
 
 DELIMITER //
@@ -855,11 +861,8 @@ IF 'BASE TABLE' = (select table_type from information_schema.tables where table_
   FROM user;
   DROP TABLE user;
 
-  SELECT "system_tables_fix, after dropping user", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
-  WHERE object_schema='test' order by object_name;
-
-ELSE
-  SELECT 'user table not found';
+  SELECT "system_tables_fix, after creating global_priv and dropping user", object_name FROM performance_schema.objects_summary_global_by_type
+  WHERE object_schema='test' AND object_name IN ('user','global_priv') order by object_name;
 END IF//
 
 IF 1 = (SELECT count(*) FROM information_schema.VIEWS WHERE TABLE_CATALOG = 'def' and TABLE_SCHEMA = 'mysql' and TABLE_NAME='user' and (DEFINER = 'root@localhost' or (DEFINER = 'mariadb.sys@localhost' and VIEW_DEFINITION LIKE "%'N' AS `password_expired`%"))) THEN
