@@ -84,6 +84,19 @@ ALTER TABLE tables_priv
 
 SELECT "after ALTERing tables_priv to Aria", object_name FROM performance_schema.objects_summary_global_by_type
 WHERE object_schema='test' AND object_name = 'tables_priv' order by object_name;
+INSTALL SONAME 'disks';
+DELIMITER //
+IF 1 = (SELECT COUNT(*) FROM performance_schema.objects_summary_global_by_type WHERE object_schema='test' AND object_name = 'tables_priv' order by object_name) THEN
+  SELECT * FROM INFORMATION_SCHEMA.DISKS;
+  ALTER TABLE tables_priv FORCE, ALGORITHM=COPY;
+  SELECT "after FORCE-ALTERing tables_priv", object_name FROM performance_schema.objects_summary_global_by_type
+  WHERE object_schema='test' AND object_name = 'tables_priv' order by object_name;
+  SELECT SLEEP(5);
+  SELECT "after SLEEP-ing", object_name FROM performance_schema.objects_summary_global_by_type
+  WHERE object_schema='test' AND object_name = 'tables_priv' order by object_name;
+END IF //
+DELIMITER ;
+UNINSTALL SONAME 'disks';
 
 ALTER TABLE tables_priv
   MODIFY Column_priv set('Select','Insert','Update','References')
