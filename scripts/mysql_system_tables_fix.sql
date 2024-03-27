@@ -839,6 +839,10 @@ IF 'BASE TABLE' = (select table_type from information_schema.tables where table_
                     'is_role', 'Y'=is_role)) as Priv
   FROM user;
   DROP TABLE user;
+  SELECT object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+  WHERE object_schema='test';
+ELSE
+  SELECT 'user table not found';
 END IF//
 
 IF 1 = (SELECT count(*) FROM information_schema.VIEWS WHERE TABLE_CATALOG = 'def' and TABLE_SCHEMA = 'mysql' and TABLE_NAME='user' and (DEFINER = 'root@localhost' or (DEFINER = 'mariadb.sys@localhost' and VIEW_DEFINITION LIKE "%'N' AS `password_expired`%"))) THEN
