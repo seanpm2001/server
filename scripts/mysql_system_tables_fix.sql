@@ -30,6 +30,9 @@ set default_storage_engine=Aria;
 set enforce_storage_engine=NULL;
 set alter_algorithm='DEFAULT';
 
+SELECT "Beginning of system_tables_fix", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+WHERE object_schema='test' order by object_name;
+
 set @have_innodb= (select count(engine) from information_schema.engines where engine='INNODB' and support != 'NO');
 
 ALTER TABLE user add File_priv enum('N','Y') COLLATE utf8_general_ci DEFAULT 'N' NOT NULL;
@@ -46,6 +49,9 @@ ALTER TABLE db add Grant_priv enum('N','Y') COLLATE utf8_general_ci DEFAULT 'N' 
                add References_priv enum('N','Y') COLLATE utf8_general_ci DEFAULT 'N' NOT NULL,
                add Index_priv enum('N','Y') COLLATE utf8_general_ci DEFAULT 'N' NOT NULL,
                add Alter_priv enum('N','Y') COLLATE utf8_general_ci DEFAULT 'N' NOT NULL;
+
+SELECT "system_tables_fix, after first ALTERs", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+WHERE object_schema='test' order by object_name;
 
 # Fix privileges for old tables
 UPDATE user SET Grant_priv=File_priv,References_priv=Create_priv,Index_priv=Create_priv,Alter_priv=Create_priv WHERE @hadGrantPriv = 0;
@@ -160,6 +166,9 @@ alter table user change max_questions max_questions int(11) unsigned DEFAULT 0  
 alter table db comment='Database privileges';
 alter table user comment='Users and global privileges';
 alter table func comment='User defined functions';
+
+SELECT "system_tables_fix, before ALTERing user to Aria", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+WHERE object_schema='test' order by object_name;
 
 # Convert all tables to UTF-8 with binary collation
 # and reset all char columns to correct width
@@ -760,6 +769,9 @@ DELETE FROM mysql.plugin WHERE name="rpl_semi_sync_slave" AND NOT EXISTS (SELECT
 -- Ensure that all tables are of type Aria and transactional
 --
 
+SELECT "system_tables_fix, before massive ALTER to Aria", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+WHERE object_schema='test' order by object_name;
+
 ALTER TABLE user ENGINE=Aria transactional=1;
 ALTER TABLE db ENGINE=Aria transactional=1;
 ALTER TABLE func ENGINE=Aria transactional=1;
@@ -787,7 +799,7 @@ ALTER TABLE table_stats ENGINE=Aria transactional=0;
 ALTER TABLE column_stats ENGINE=Aria transactional=0;
 ALTER TABLE index_stats ENGINE=Aria transactional=0;
 
-SELECT object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+SELECT "system_tables_fix, after massive ALTER to Aria", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
 WHERE object_schema='test' order by object_name;
 
 DELIMITER //
@@ -842,8 +854,10 @@ IF 'BASE TABLE' = (select table_type from information_schema.tables where table_
                     'is_role', 'Y'=is_role)) as Priv
   FROM user;
   DROP TABLE user;
-  SELECT object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+
+  SELECT "system_tables_fix, after dropping user", object_schema, object_name FROM performance_schema.objects_summary_global_by_type
   WHERE object_schema='test' order by object_name;
+
 ELSE
   SELECT 'user table not found';
 END IF//

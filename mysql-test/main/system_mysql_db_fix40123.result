@@ -35,110 +35,169 @@ Warning	1280	Name 'TzIdTrTId' ignored for PRIMARY key.
 CREATE TABLE time_zone_leap_second ( Transition_time bigint signed NOT NULL, Correction int signed NOT NULL, PRIMARY KEY TranTime (Transition_time) ) engine=MyISAM CHARACTER SET utf8 comment='Leap seconds information for time zones';
 Warnings:
 Warning	1280	Name 'TranTime' ignored for PRIMARY key.
-ERROR 1060 (42S21) at line 35: Duplicate column name 'File_priv'
-ERROR 1060 (42S21) at line 41: Duplicate column name 'Grant_priv'
-ERROR 1060 (42S21) at line 45: Duplicate column name 'Grant_priv'
-ERROR 1060 (42S21) at line 57: Duplicate column name 'ssl_type'
-ERROR 1061 (42000) at line 67: Duplicate key name 'Grantor'
-ERROR 1054 (42S22) at line 94: Unknown column 'Type' in 'columns_priv'
-ERROR 1060 (42S21) at line 116: Duplicate column name 'type'
-ERROR 1060 (42S21) at line 126: Duplicate column name 'Show_db_priv'
-ERROR 1060 (42S21) at line 143: Duplicate column name 'max_questions'
-ERROR 1060 (42S21) at line 153: Duplicate column name 'Create_tmp_table_priv'
-ERROR 1060 (42S21) at line 173: Duplicate column name 'Password'
-ERROR 1054 (42S22) at line 179: Unknown column 'plugin' in 'where clause'
-ERROR 1146 (42S02) at line 181: Table 'test.plugin' doesn't exist
-ERROR 1146 (42S02) at line 184: Table 'test.plugin' doesn't exist
-ERROR 1146 (42S02) at line 245: Table 'test.general_log' doesn't exist
-ERROR 1146 (42S02) at line 256: Table 'test.slow_log' doesn't exist
-ERROR 1146 (42S02) at line 268: Table 'test.slow_log' doesn't exist
-ERROR 1146 (42S02) at line 270: Table 'test.slow_log' doesn't exist
-ERROR 1146 (42S02) at line 275: Table 'test.plugin' doesn't exist
-ERROR 1054 (42S22) at line 284: Unknown column 'Create_view_priv' in 'where clause'
-ERROR 1054 (42S22) at line 314: Unknown column 'Create_routine_priv' in 'where clause'
-ERROR 1054 (42S22) at line 356: Unknown column 'Create_user_priv' in 'where clause'
-ERROR 1146 (42S02) at line 368: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 372: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 376: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 380: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 384: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 392: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 443: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 448: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 451: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 454: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 459: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 464: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 470: Table 'test.proc' doesn't exist
+ERROR 1060 (42S21) at line 38: Duplicate column name 'File_priv'
+ERROR 1060 (42S21) at line 44: Duplicate column name 'Grant_priv'
+ERROR 1060 (42S21) at line 48: Duplicate column name 'Grant_priv'
+ERROR 1060 (42S21) at line 63: Duplicate column name 'ssl_type'
+ERROR 1061 (42000) at line 73: Duplicate key name 'Grantor'
+ERROR 1054 (42S22) at line 100: Unknown column 'Type' in 'columns_priv'
+ERROR 1060 (42S21) at line 122: Duplicate column name 'type'
+ERROR 1060 (42S21) at line 132: Duplicate column name 'Show_db_priv'
+ERROR 1060 (42S21) at line 149: Duplicate column name 'max_questions'
+ERROR 1060 (42S21) at line 159: Duplicate column name 'Create_tmp_table_priv'
+ERROR 1060 (42S21) at line 182: Duplicate column name 'Password'
+ERROR 1054 (42S22) at line 188: Unknown column 'plugin' in 'where clause'
+ERROR 1146 (42S02) at line 190: Table 'test.plugin' doesn't exist
+ERROR 1146 (42S02) at line 193: Table 'test.plugin' doesn't exist
+ERROR 1146 (42S02) at line 254: Table 'test.general_log' doesn't exist
+ERROR 1146 (42S02) at line 265: Table 'test.slow_log' doesn't exist
+ERROR 1146 (42S02) at line 277: Table 'test.slow_log' doesn't exist
+ERROR 1146 (42S02) at line 279: Table 'test.slow_log' doesn't exist
+ERROR 1146 (42S02) at line 284: Table 'test.plugin' doesn't exist
+ERROR 1054 (42S22) at line 293: Unknown column 'Create_view_priv' in 'where clause'
+ERROR 1054 (42S22) at line 323: Unknown column 'Create_routine_priv' in 'where clause'
+ERROR 1054 (42S22) at line 365: Unknown column 'Create_user_priv' in 'where clause'
+ERROR 1146 (42S02) at line 377: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 381: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 385: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 389: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 393: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 401: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 452: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 457: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 460: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 463: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 468: Table 'test.procs_priv' doesn't exist
 ERROR 1146 (42S02) at line 473: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 476: Table 'test.proc' doesn't exist
 ERROR 1146 (42S02) at line 479: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 482: Table 'test.proc' doesn't exist
 ERROR 1146 (42S02) at line 485: Table 'test.proc' doesn't exist
 ERROR 1146 (42S02) at line 488: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 491: Table 'test.proc' doesn't exist
 ERROR 1146 (42S02) at line 494: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 497: Table 'test.proc' doesn't exist
 ERROR 1146 (42S02) at line 500: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 506: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 508: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 511: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 503: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 509: Table 'test.proc' doesn't exist
 ERROR 1146 (42S02) at line 515: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 517: Table 'test.proc' doesn't exist
 ERROR 1146 (42S02) at line 520: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 521: Table 'test.proc' doesn't exist
-ERROR 1054 (42S22) at line 527: Unknown column 'Event_priv' in 'where clause'
-ERROR 1146 (42S02) at line 540: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 542: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 544: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 581: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 583: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 584: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 586: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 588: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 591: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 594: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 524: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 529: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 530: Table 'test.proc' doesn't exist
+ERROR 1054 (42S22) at line 536: Unknown column 'Event_priv' in 'where clause'
+ERROR 1146 (42S02) at line 549: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 551: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 553: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 590: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 592: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 593: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 595: Table 'test.event' doesn't exist
 ERROR 1146 (42S02) at line 597: Table 'test.event' doesn't exist
 ERROR 1146 (42S02) at line 600: Table 'test.event' doesn't exist
 ERROR 1146 (42S02) at line 603: Table 'test.event' doesn't exist
 ERROR 1146 (42S02) at line 606: Table 'test.event' doesn't exist
 ERROR 1146 (42S02) at line 609: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 611: Table 'test.event' doesn't exist
-ERROR 1054 (42S22) at line 621: Unknown column 'Trigger_priv' in 'where clause'
-ERROR 1054 (42S22) at line 636: Unknown column 'Create_tablespace_priv' in 'where clause'
-ERROR 1054 (42S22) at line 647: Unknown column 'Truncate_versioning_priv' in 'user'
-ERROR 1054 (42S22) at line 648: Unknown column 'Truncate_versioning_priv' in 'db'
-ERROR 1054 (42S22) at line 651: Unknown column 'Delete_history_priv' in 'where clause'
-ERROR 1054 (42S22) at line 662: Unknown column 'auth_string' in 'user'
-ERROR 1146 (42S02) at line 708: Table 'test.innodb_index_stats' doesn't exist
-ERROR 1146 (42S02) at line 726: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 727: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 728: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 729: Table 'test.proxies_priv' doesn't exist
-ERROR 1146 (42S02) at line 730: Table 'test.proxies_priv' doesn't exist
-ERROR 1146 (42S02) at line 731: Table 'test.proxies_priv' doesn't exist
-ERROR 1146 (42S02) at line 732: Table 'test.servers' doesn't exist
-ERROR 1146 (42S02) at line 733: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 750: Table 'test.column_stats' doesn't exist
-ERROR 1146 (42S02) at line 766: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 769: Table 'test.roles_mapping' doesn't exist
-ERROR 1146 (42S02) at line 770: Table 'test.plugin' doesn't exist
-ERROR 1146 (42S02) at line 771: Table 'test.servers' doesn't exist
-ERROR 1146 (42S02) at line 777: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 778: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 779: Table 'test.proxies_priv' doesn't exist
-ERROR 1146 (42S02) at line 786: Table 'test.table_stats' doesn't exist
-ERROR 1146 (42S02) at line 787: Table 'test.column_stats' doesn't exist
-ERROR 1146 (42S02) at line 788: Table 'test.index_stats' doesn't exist
-ERROR 1146 (42S02) at line 858: Table 'test.servers' doesn't exist
+ERROR 1146 (42S02) at line 612: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 615: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 618: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 620: Table 'test.event' doesn't exist
+ERROR 1054 (42S22) at line 630: Unknown column 'Trigger_priv' in 'where clause'
+ERROR 1054 (42S22) at line 645: Unknown column 'Create_tablespace_priv' in 'where clause'
+ERROR 1054 (42S22) at line 656: Unknown column 'Truncate_versioning_priv' in 'user'
+ERROR 1054 (42S22) at line 657: Unknown column 'Truncate_versioning_priv' in 'db'
+ERROR 1054 (42S22) at line 660: Unknown column 'Delete_history_priv' in 'where clause'
+ERROR 1054 (42S22) at line 671: Unknown column 'auth_string' in 'user'
+ERROR 1146 (42S02) at line 717: Table 'test.innodb_index_stats' doesn't exist
+ERROR 1146 (42S02) at line 735: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 736: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 737: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 738: Table 'test.proxies_priv' doesn't exist
+ERROR 1146 (42S02) at line 739: Table 'test.proxies_priv' doesn't exist
+ERROR 1146 (42S02) at line 740: Table 'test.proxies_priv' doesn't exist
+ERROR 1146 (42S02) at line 741: Table 'test.servers' doesn't exist
+ERROR 1146 (42S02) at line 742: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 759: Table 'test.column_stats' doesn't exist
+ERROR 1146 (42S02) at line 778: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 781: Table 'test.roles_mapping' doesn't exist
+ERROR 1146 (42S02) at line 782: Table 'test.plugin' doesn't exist
+ERROR 1146 (42S02) at line 783: Table 'test.servers' doesn't exist
+ERROR 1146 (42S02) at line 789: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 790: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 791: Table 'test.proxies_priv' doesn't exist
+ERROR 1146 (42S02) at line 798: Table 'test.table_stats' doesn't exist
+ERROR 1146 (42S02) at line 799: Table 'test.column_stats' doesn't exist
+ERROR 1146 (42S02) at line 800: Table 'test.index_stats' doesn't exist
+ERROR 1146 (42S02) at line 872: Table 'test.servers' doesn't exist
+Beginning of system_tables_fix	object_schema	object_name
+Beginning of system_tables_fix	test	columns_priv
+Beginning of system_tables_fix	test	db
+Beginning of system_tables_fix	test	func
+Beginning of system_tables_fix	test	help_category
+Beginning of system_tables_fix	test	help_keyword
+Beginning of system_tables_fix	test	help_relation
+Beginning of system_tables_fix	test	help_topic
+Beginning of system_tables_fix	test	host
+Beginning of system_tables_fix	test	tables_priv
+Beginning of system_tables_fix	test	time_zone
+Beginning of system_tables_fix	test	time_zone_leap_second
+Beginning of system_tables_fix	test	time_zone_name
+Beginning of system_tables_fix	test	time_zone_transition
+Beginning of system_tables_fix	test	time_zone_transition_type
+Beginning of system_tables_fix	test	user
 @hadGrantPriv:=1
 1
 1
+system_tables_fix, after first ALTERs	object_schema	object_name
+system_tables_fix, after first ALTERs	test	columns_priv
+system_tables_fix, after first ALTERs	test	db
+system_tables_fix, after first ALTERs	test	func
+system_tables_fix, after first ALTERs	test	help_category
+system_tables_fix, after first ALTERs	test	help_keyword
+system_tables_fix, after first ALTERs	test	help_relation
+system_tables_fix, after first ALTERs	test	help_topic
+system_tables_fix, after first ALTERs	test	host
+system_tables_fix, after first ALTERs	test	tables_priv
+system_tables_fix, after first ALTERs	test	time_zone
+system_tables_fix, after first ALTERs	test	time_zone_leap_second
+system_tables_fix, after first ALTERs	test	time_zone_name
+system_tables_fix, after first ALTERs	test	time_zone_transition
+system_tables_fix, after first ALTERs	test	time_zone_transition_type
+system_tables_fix, after first ALTERs	test	user
 @hadShowDbPriv:=1
 1
 1
-object_schema	object_name
-test	host
-object_schema	object_name
-test	global_priv
-test	host
+system_tables_fix, before ALTERing user to Aria	object_schema	object_name
+system_tables_fix, before ALTERing user to Aria	test	db
+system_tables_fix, before ALTERing user to Aria	test	func
+system_tables_fix, before ALTERing user to Aria	test	help_category
+system_tables_fix, before ALTERing user to Aria	test	help_keyword
+system_tables_fix, before ALTERing user to Aria	test	help_relation
+system_tables_fix, before ALTERing user to Aria	test	help_topic
+system_tables_fix, before ALTERing user to Aria	test	host
+system_tables_fix, before ALTERing user to Aria	test	time_zone
+system_tables_fix, before ALTERing user to Aria	test	time_zone_leap_second
+system_tables_fix, before ALTERing user to Aria	test	time_zone_name
+system_tables_fix, before ALTERing user to Aria	test	time_zone_transition
+system_tables_fix, before ALTERing user to Aria	test	time_zone_transition_type
+system_tables_fix, before ALTERing user to Aria	test	user
+system_tables_fix, before massive ALTER to Aria	object_schema	object_name
+system_tables_fix, before massive ALTER to Aria	test	columns_priv
+system_tables_fix, before massive ALTER to Aria	test	db
+system_tables_fix, before massive ALTER to Aria	test	help_keyword
+system_tables_fix, before massive ALTER to Aria	test	help_relation
+system_tables_fix, before massive ALTER to Aria	test	host
+system_tables_fix, before massive ALTER to Aria	test	tables_priv
+system_tables_fix, before massive ALTER to Aria	test	time_zone
+system_tables_fix, before massive ALTER to Aria	test	time_zone_leap_second
+system_tables_fix, before massive ALTER to Aria	test	time_zone_name
+system_tables_fix, before massive ALTER to Aria	test	time_zone_transition
+system_tables_fix, before massive ALTER to Aria	test	time_zone_transition_type
+system_tables_fix, before massive ALTER to Aria	test	user
+system_tables_fix, after massive ALTER to Aria	object_schema	object_name
+system_tables_fix, after massive ALTER to Aria	test	host
+system_tables_fix, after dropping user	object_schema	object_name
+system_tables_fix, after dropping user	test	global_priv
+system_tables_fix, after dropping user	test	host
 show tables;
 Tables_in_db
 column_stats
