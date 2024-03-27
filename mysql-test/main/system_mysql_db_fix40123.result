@@ -127,7 +127,7 @@ ERROR 1146 (42S02) at line 779: Table 'test.proxies_priv' doesn't exist
 ERROR 1146 (42S02) at line 786: Table 'test.table_stats' doesn't exist
 ERROR 1146 (42S02) at line 787: Table 'test.column_stats' doesn't exist
 ERROR 1146 (42S02) at line 788: Table 'test.index_stats' doesn't exist
-ERROR 1146 (42S02) at line 855: Table 'test.servers' doesn't exist
+ERROR 1146 (42S02) at line 858: Table 'test.servers' doesn't exist
 @hadGrantPriv:=1
 1
 1
@@ -136,7 +136,9 @@ ERROR 1146 (42S02) at line 855: Table 'test.servers' doesn't exist
 1
 object_schema	object_name
 test	host
+object_schema	object_name
 test	global_priv
+test	host
 show tables;
 Tables_in_db
 column_stats

@@ -787,6 +787,9 @@ ALTER TABLE table_stats ENGINE=Aria transactional=0;
 ALTER TABLE column_stats ENGINE=Aria transactional=0;
 ALTER TABLE index_stats ENGINE=Aria transactional=0;
 
+SELECT object_schema, object_name FROM performance_schema.objects_summary_global_by_type
+WHERE object_schema='test' order by object_name;
+
 DELIMITER //
 IF 'BASE TABLE' = (select table_type from information_schema.tables where table_schema=database() and table_name='user') THEN
   CREATE TABLE IF NOT EXISTS global_priv (Host char(60) binary DEFAULT '', User char(80) binary DEFAULT '', Priv JSON NOT NULL DEFAULT '{}' CHECK(JSON_VALID(Priv)), PRIMARY KEY Host (Host,User)) engine=Aria transactional=1 CHARACTER SET utf8 COLLATE utf8_bin comment='Users and global privileges'
@@ -840,7 +843,7 @@ IF 'BASE TABLE' = (select table_type from information_schema.tables where table_
   FROM user;
   DROP TABLE user;
   SELECT object_schema, object_name FROM performance_schema.objects_summary_global_by_type
-  WHERE object_schema='test';
+  WHERE object_schema='test' order by object_name;
 ELSE
   SELECT 'user table not found';
 END IF//

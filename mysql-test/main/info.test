@@ -1,0 +1,6 @@
+--exec df -kT
+select @@tmpdir;
+--exec df -kT $MYSQL_TMP_DIR
+select @@datadir;
+--let $datadir= `select @@datadir`
+--exec df -kT $datadir
