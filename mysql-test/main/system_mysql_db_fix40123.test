@@ -55,6 +55,9 @@ CREATE TABLE time_zone_leap_second ( Transition_time bigint signed NOT NULL, Cor
 show create database test;
 show variables like 'character_set\_%';
 show variables like 'collat%';
+show status like 'performance%';
+show status like '%tmp%';
+show status like '%temp%';
 
 
 # Dump the tables that should be compared

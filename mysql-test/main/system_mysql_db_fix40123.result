@@ -156,6 +156,55 @@ Variable_name	Value
 collation_connection	latin1_swedish_ci
 collation_database	latin1_swedish_ci
 collation_server	latin1_swedish_ci
+show status like 'performance%';
+Variable_name	Value
+Performance_schema_accounts_lost	0
+Performance_schema_cond_classes_lost	0
+Performance_schema_cond_instances_lost	0
+Performance_schema_digest_lost	144
+Performance_schema_file_classes_lost	0
+Performance_schema_file_handles_lost	0
+Performance_schema_file_instances_lost	27
+Performance_schema_hosts_lost	0
+Performance_schema_index_stat_lost	0
+Performance_schema_locker_lost	0
+Performance_schema_memory_classes_lost	0
+Performance_schema_metadata_lock_lost	0
+Performance_schema_mutex_classes_lost	0
+Performance_schema_mutex_instances_lost	0
+Performance_schema_nested_statement_lost	0
+Performance_schema_prepared_statements_lost	0
+Performance_schema_program_lost	0
+Performance_schema_rwlock_classes_lost	0
+Performance_schema_rwlock_instances_lost	0
+Performance_schema_session_connect_attrs_lost	0
+Performance_schema_socket_classes_lost	0
+Performance_schema_socket_instances_lost	0
+Performance_schema_stage_classes_lost	0
+Performance_schema_statement_classes_lost	0
+Performance_schema_table_handles_lost	0
+Performance_schema_table_instances_lost	0
+Performance_schema_table_lock_stat_lost	0
+Performance_schema_thread_classes_lost	0
+Performance_schema_thread_instances_lost	0
+Performance_schema_users_lost	0
+show status like '%tmp%';
+Variable_name	Value
+Created_tmp_disk_tables	1
+Created_tmp_files	5
+Created_tmp_tables	3
+Handler_tmp_delete	0
+Handler_tmp_update	0
+Handler_tmp_write	78
+Rows_tmp_read	676
+show status like '%temp%';
+Variable_name	Value
+Com_create_temporary_table	0
+Com_drop_temporary_table	0
+Handler_icp_attempts	0
+Innodb_encryption_n_temp_blocks_encrypted	0
+Innodb_encryption_n_temp_blocks_decrypted	0
+Slave_open_temp_tables	0
 show tables;
 Tables_in_db
 column_stats
