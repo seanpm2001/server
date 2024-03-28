@@ -35,99 +35,6 @@ Warning	1280	Name 'TzIdTrTId' ignored for PRIMARY key.
 CREATE TABLE time_zone_leap_second ( Transition_time bigint signed NOT NULL, Correction int signed NOT NULL, PRIMARY KEY TranTime (Transition_time) ) engine=MyISAM CHARACTER SET utf8 comment='Leap seconds information for time zones';
 Warnings:
 Warning	1280	Name 'TranTime' ignored for PRIMARY key.
-ERROR 1060 (42S21) at line 37: Duplicate column name 'File_priv'
-ERROR 1060 (42S21) at line 45: Duplicate column name 'Grant_priv'
-ERROR 1060 (42S21) at line 52: Duplicate column name 'Grant_priv'
-ERROR 1060 (42S21) at line 66: Duplicate column name 'ssl_type'
-ERROR 1061 (42000) at line 81: Duplicate key name 'Grantor'
-ERROR 1054 (42S22) at line 108: Unknown column 'Type' in 'columns_priv'
-ERROR 1060 (42S21) at line 130: Duplicate column name 'type'
-ERROR 1060 (42S21) at line 140: Duplicate column name 'Show_db_priv'
-ERROR 1060 (42S21) at line 157: Duplicate column name 'max_questions'
-ERROR 1060 (42S21) at line 167: Duplicate column name 'Create_tmp_table_priv'
-ERROR 1060 (42S21) at line 187: Duplicate column name 'Password'
-ERROR 1054 (42S22) at line 193: Unknown column 'plugin' in 'where clause'
-ERROR 1146 (42S02) at line 195: Table 'test.plugin' doesn't exist
-ERROR 1146 (42S02) at line 198: Table 'test.plugin' doesn't exist
-ERROR 1146 (42S02) at line 259: Table 'test.general_log' doesn't exist
-ERROR 1146 (42S02) at line 270: Table 'test.slow_log' doesn't exist
-ERROR 1146 (42S02) at line 282: Table 'test.slow_log' doesn't exist
-ERROR 1146 (42S02) at line 284: Table 'test.slow_log' doesn't exist
-ERROR 1146 (42S02) at line 289: Table 'test.plugin' doesn't exist
-ERROR 1054 (42S22) at line 298: Unknown column 'Create_view_priv' in 'where clause'
-ERROR 1054 (42S22) at line 328: Unknown column 'Create_routine_priv' in 'where clause'
-ERROR 1054 (42S22) at line 370: Unknown column 'Create_user_priv' in 'where clause'
-ERROR 1146 (42S02) at line 382: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 386: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 390: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 394: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 398: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 406: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 457: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 462: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 465: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 468: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 473: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 478: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 484: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 487: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 490: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 493: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 499: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 502: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 505: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 508: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 514: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 520: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 522: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 525: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 529: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 534: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 535: Table 'test.proc' doesn't exist
-ERROR 1054 (42S22) at line 541: Unknown column 'Event_priv' in 'where clause'
-ERROR 1146 (42S02) at line 554: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 556: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 558: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 595: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 597: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 598: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 600: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 602: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 605: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 608: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 611: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 614: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 617: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 620: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 623: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 625: Table 'test.event' doesn't exist
-ERROR 1054 (42S22) at line 635: Unknown column 'Trigger_priv' in 'where clause'
-ERROR 1054 (42S22) at line 650: Unknown column 'Create_tablespace_priv' in 'where clause'
-ERROR 1054 (42S22) at line 661: Unknown column 'Truncate_versioning_priv' in 'user'
-ERROR 1054 (42S22) at line 662: Unknown column 'Truncate_versioning_priv' in 'db'
-ERROR 1054 (42S22) at line 665: Unknown column 'Delete_history_priv' in 'where clause'
-ERROR 1054 (42S22) at line 676: Unknown column 'auth_string' in 'user'
-ERROR 1146 (42S02) at line 722: Table 'test.innodb_index_stats' doesn't exist
-ERROR 1146 (42S02) at line 740: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 741: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 742: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 743: Table 'test.proxies_priv' doesn't exist
-ERROR 1146 (42S02) at line 744: Table 'test.proxies_priv' doesn't exist
-ERROR 1146 (42S02) at line 745: Table 'test.proxies_priv' doesn't exist
-ERROR 1146 (42S02) at line 746: Table 'test.servers' doesn't exist
-ERROR 1146 (42S02) at line 747: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 764: Table 'test.column_stats' doesn't exist
-ERROR 1146 (42S02) at line 780: Table 'test.procs_priv' doesn't exist
-ERROR 1146 (42S02) at line 783: Table 'test.roles_mapping' doesn't exist
-ERROR 1146 (42S02) at line 784: Table 'test.plugin' doesn't exist
-ERROR 1146 (42S02) at line 785: Table 'test.servers' doesn't exist
-ERROR 1146 (42S02) at line 791: Table 'test.proc' doesn't exist
-ERROR 1146 (42S02) at line 792: Table 'test.event' doesn't exist
-ERROR 1146 (42S02) at line 793: Table 'test.proxies_priv' doesn't exist
-ERROR 1146 (42S02) at line 800: Table 'test.table_stats' doesn't exist
-ERROR 1146 (42S02) at line 801: Table 'test.column_stats' doesn't exist
-ERROR 1146 (42S02) at line 802: Table 'test.index_stats' doesn't exist
-ERROR 1146 (42S02) at line 865: Table 'test.servers' doesn't exist
 before 1st ALTER	object_name
 before 1st ALTER	db
 before 1st ALTER	host
@@ -211,6 +118,84 @@ before 4th ALTER	time_zone
 before 4th ALTER	time_zone_transition
 before 4th ALTER	time_zone_transition_type
 before 4th ALTER	time_zone_leap_second
+Table	Create Table
+user	CREATE TABLE `user` (\n  `Host` char(60) NOT NULL DEFAULT '',\n  `User` char(16) NOT NULL DEFAULT '',\n  `Password` char(41) NOT NULL DEFAULT '',\n  `Select_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Insert_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Update_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Delete_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Create_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Drop_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Reload_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Shutdown_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Process_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `File_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Grant_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `References_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Index_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Alter_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Show_db_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Super_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Create_tmp_table_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Lock_tables_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Execute_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Repl_slave_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Repl_client_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `ssl_type` enum('','ANY','X509','SPECIFIED') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',\n  `ssl_cipher` blob NOT NULL,\n  `x509_issuer` blob NOT NULL,\n  `x509_subject` blob NOT NULL,\n  `max_questions` int(11) unsigned NOT NULL DEFAULT 0,\n  `max_updates` int(11) unsigned NOT NULL DEFAULT 0,\n  `max_connections` int(11) unsigned NOT NULL DEFAULT 0,\n  PRIMARY KEY (`Host`,`User`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and global privileges'
+VARIABLE_NAME	VARIABLE_VALUE
+ARIA_PAGECACHE_BLOCKS_NOT_FLUSHED	0
+ARIA_PAGECACHE_BLOCKS_UNUSED	938
+ARIA_PAGECACHE_BLOCKS_USED	42
+ARIA_PAGECACHE_READS	51
+ARIA_PAGECACHE_READ_REQUESTS	2035
+ARIA_PAGECACHE_WRITES	19
+ARIA_PAGECACHE_WRITE_REQUESTS	19
+COM_ALTER_TABLE	0
+COM_CREATE_TEMPORARY_TABLE	1
+CREATED_TMP_DISK_TABLES	1
+CREATED_TMP_TABLES	2
+FEATURE_DELAY_KEY_WRITE	1
+HANDLER_READ_KEY	0
+HANDLER_READ_RND	0
+HANDLER_READ_RND_NEXT	79
+HANDLER_TMP_WRITE	348
+HANDLER_WRITE	0
+KEY_BLOCKS_UNUSED	826
+KEY_BLOCKS_USED	4
+KEY_READ_REQUESTS	0
+KEY_WRITES	0
+KEY_WRITE_REQUESTS	0
+OPENED_FILES	226
+OPENED_TABLES	1
+OPENED_TABLE_DEFINITIONS	2
+OPEN_FILES	62
+OPEN_TABLES	27
+OPEN_TABLE_DEFINITIONS	34
+QUERIES	74
+QUESTIONS	1
+ROWS_READ	0
+ROWS_TMP_READ	78
+SELECT_SCAN	1
+SORT_ROWS	0
+SORT_SCAN	0
+TABLE_LOCKS_IMMEDIATE	0
+TABLE_OPEN_CACHE_HITS	0
+VARIABLE_NAME	VARIABLE_VALUE
+ARIA_PAGECACHE_BLOCKS_NOT_FLUSHED	3
+ARIA_PAGECACHE_BLOCKS_UNUSED	934
+ARIA_PAGECACHE_BLOCKS_USED	47
+ARIA_PAGECACHE_READS	53
+ARIA_PAGECACHE_READ_REQUESTS	3731
+ARIA_PAGECACHE_WRITES	23
+ARIA_PAGECACHE_WRITE_REQUESTS	26
+COM_ALTER_TABLE	4
+COM_CREATE_TEMPORARY_TABLE	2
+CREATED_TMP_DISK_TABLES	9
+CREATED_TMP_TABLES	19
+FEATURE_DELAY_KEY_WRITE	2
+HANDLER_READ_KEY	55
+HANDLER_READ_RND	1500
+HANDLER_READ_RND_NEXT	2991
+HANDLER_TMP_WRITE	1825
+HANDLER_WRITE	568
+KEY_BLOCKS_UNUSED	826
+KEY_BLOCKS_USED	4
+KEY_READ_REQUESTS	0
+KEY_WRITES	0
+KEY_WRITE_REQUESTS	0
+OPENED_FILES	234
+OPENED_TABLES	36
+OPENED_TABLE_DEFINITIONS	52
+OPEN_FILES	64
+OPEN_TABLES	27
+OPEN_TABLE_DEFINITIONS	34
+QUERIES	75
+QUESTIONS	62
+ROWS_READ	1148
+ROWS_TMP_READ	3320
+SELECT_SCAN	24
+SORT_ROWS	1500
+SORT_SCAN	6
+TABLE_LOCKS_IMMEDIATE	0
+TABLE_OPEN_CACHE_HITS	30
 after 4th ALTER	object_name
 after 4th ALTER	db
 after 4th ALTER	host
@@ -226,6 +211,8 @@ after 4th ALTER	time_zone
 after 4th ALTER	time_zone_transition
 after 4th ALTER	time_zone_transition_type
 after 4th ALTER	time_zone_leap_second
+Table	Create Table
+user	CREATE TABLE `user` (\n  `Host` char(60) NOT NULL DEFAULT '',\n  `User` char(16) NOT NULL DEFAULT '',\n  `Password` char(41) NOT NULL DEFAULT '',\n  `Select_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Insert_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Update_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Delete_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Create_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Drop_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Reload_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Shutdown_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Process_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `File_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Grant_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `References_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Index_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Alter_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Show_db_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Super_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Create_tmp_table_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Lock_tables_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Execute_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Repl_slave_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `Repl_client_priv` enum('N','Y') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'N',\n  `ssl_type` enum('','ANY','X509','SPECIFIED') NOT NULL DEFAULT '',\n  `ssl_cipher` blob NOT NULL,\n  `x509_issuer` blob NOT NULL,\n  `x509_subject` blob NOT NULL,\n  `max_questions` int(11) unsigned NOT NULL DEFAULT 0,\n  `max_updates` int(11) unsigned NOT NULL DEFAULT 0,\n  `max_connections` int(11) unsigned NOT NULL DEFAULT 0,\n  PRIMARY KEY (`Host`,`User`)\n) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and global privileges'
 @hadShowDbPriv:=1
 1
 1
