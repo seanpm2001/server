@@ -21,6 +21,8 @@ if (!$MYSQL_FIX_PRIVILEGE_TABLES)
 
 use test;
 
+--source include/restart_mysqld.inc
+
 # create system tables as in mysql-4.1.23
 # created by executing "./mysql_create_system_tables real ."
 
