@@ -53,9 +53,8 @@ show create database test;
 --remove_file $MYSQL_TMP_DIR/priv.out
 
 show create database test;
-show variables like '%character%';
-show variables like '%collat%';
-exec locale;
+show variables like 'character_set\_%';
+show variables like 'collat%';
 
 
 # Dump the tables that should be compared

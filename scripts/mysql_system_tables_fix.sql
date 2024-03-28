@@ -70,7 +70,6 @@ ADD x509_issuer BLOB NOT NULL,
 ADD x509_subject BLOB NOT NULL;
 
 SELECT "before 4th ALTER", object_name FROM performance_schema.objects_summary_global_by_type WHERE object_schema='test';
-show create table user;
 ALTER TABLE user MODIFY ssl_type enum('','ANY','X509', 'SPECIFIED') DEFAULT '' NOT NULL;
 SELECT "after 4th ALTER", object_name FROM performance_schema.objects_summary_global_by_type WHERE object_schema='test';
 show create table user;
