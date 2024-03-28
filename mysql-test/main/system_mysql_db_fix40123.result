@@ -35,9 +35,6 @@ Warning	1280	Name 'TzIdTrTId' ignored for PRIMARY key.
 CREATE TABLE time_zone_leap_second ( Transition_time bigint signed NOT NULL, Correction int signed NOT NULL, PRIMARY KEY TranTime (Transition_time) ) engine=MyISAM CHARACTER SET utf8 comment='Leap seconds information for time zones';
 Warnings:
 Warning	1280	Name 'TranTime' ignored for PRIMARY key.
-show create database test;
-Database	Create Database
-test	CREATE DATABASE `test` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci */
 before 1st ALTER	object_name
 before 1st ALTER	db
 before 1st ALTER	host
