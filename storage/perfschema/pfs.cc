@@ -1935,18 +1935,18 @@ pfs_drop_table_share_v1(my_bool temporary,
   /* Ignore temporary tables. */
   if (temporary)
     return;
+  {
+    THD *thd= current_thd;
+    if (thd)
+      fprintf(stderr, "PFS: %.*s\n", (int)thd->query_string.length(),
+              thd->query_string.str());
+  }
   PFS_thread *pfs_thread= my_thread_get_THR_PFS();
   if (unlikely(pfs_thread == NULL))
   {
     fprintf(stderr, "PFS: thread=0 %.*s.%.*s\n", schema_name_length, schema_name,
             table_name_length, table_name);
     return;
-  }
-  {
-    THD *thd= current_thd;
-    if (thd)
-      fprintf(stderr, "PFS: %.*s\n", (int)thd->query_string.length(),
-              thd->query_string.str());
   }
   /* TODO: temporary tables */
   drop_table_share(pfs_thread, temporary, schema_name, schema_name_length,

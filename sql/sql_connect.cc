@@ -45,6 +45,8 @@
 #include "proxy_protocol.h"
 #include <ssl_compat.h>
 
+#include "../storage/perfschema/pfs_server.h"
+
 HASH global_user_stats, global_client_stats, global_table_stats;
 HASH global_index_stats;
 /* Protects the above global stats */
@@ -1570,6 +1572,8 @@ THD *CONNECT::create_thd(THD *thd)
   /* Attach PSI instrumentation to the new THD */
 
   PSI_thread *psi= PSI_CALL_get_thread();
+  extern my_bool pfs_enabled;
+  DBUG_ASSERT(psi || !pfs_enabled || !pfs_param.m_thread_sizing || !pfs_param.m_thread_class_sizing);
   PSI_CALL_set_thread_os_id(psi);
   PSI_CALL_set_thread_THD(psi, thd);
   PSI_CALL_set_thread_id(psi, thd->thread_id);
