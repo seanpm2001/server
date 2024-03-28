@@ -71,23 +71,18 @@ ADD x509_subject BLOB NOT NULL;
 
 SELECT "before 4th ALTER", object_name FROM performance_schema.objects_summary_global_by_type WHERE object_schema='test';
 
-FLUSH STATUS;
-
-SELECT * FROM INFORMATION_SCHEMA.SESSION_STATUS WHERE VARIABLE_NAME LIKE 'PERFORMANCE%';
-SELECT * FROM INFORMATION_SCHEMA.GLOBAL_STATUS WHERE VARIABLE_NAME LIKE 'PERFORMANCE%';
-
-SELECT @@performance_schema_digests_size;
-select count(*) from performance_schema.events_statements_summary_by_digest;
+SELECT VARIABLE_VALUE INTO @lostval FROM INFORMATION_SCHEMA.GLOBAL_STATUS WHERE VARIABLE_NAME = 'PERFORMANCE_SCHEMA_DIGEST_LOST';
 
 ALTER TABLE user MODIFY ssl_type enum('','ANY','X509', 'SPECIFIED') DEFAULT '' NOT NULL;
 
-SELECT @@performance_schema_digests_size;
-select count(*) from performance_schema.events_statements_summary_by_digest;
-
-SELECT * FROM INFORMATION_SCHEMA.SESSION_STATUS WHERE VARIABLE_NAME LIKE 'PERFORMANCE%';
-SELECT * FROM INFORMATION_SCHEMA.GLOBAL_STATUS WHERE VARIABLE_NAME LIKE 'PERFORMANCE%';
-
 SELECT "after 4th ALTER", object_name FROM performance_schema.objects_summary_global_by_type WHERE object_schema='test';
+
+SELECT VARIABLE_VALUE - @lostval FROM INFORMATION_SCHEMA.GLOBAL_STATUS WHERE VARIABLE_NAME = 'PERFORMANCE_SCHEMA_DIGEST_LOST';
+select 'variables:';
+show variables like 'performance%';
+select count(*) from performance_schema.setup_objects;
+select count(*) from performance_schema.events_statements_summary_by_digest;
+select count(*) from performance_schema.objects_summary_global_by_type;
 
 #
 # tables_priv
