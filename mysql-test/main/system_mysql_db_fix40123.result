@@ -35,49 +35,200 @@ Warning	1280	Name 'TzIdTrTId' ignored for PRIMARY key.
 CREATE TABLE time_zone_leap_second ( Transition_time bigint signed NOT NULL, Correction int signed NOT NULL, PRIMARY KEY TranTime (Transition_time) ) engine=MyISAM CHARACTER SET utf8 comment='Leap seconds information for time zones';
 Warnings:
 Warning	1280	Name 'TranTime' ignored for PRIMARY key.
-Beginning of system_tables_fix	object_name
-Beginning of system_tables_fix	columns_priv
-Beginning of system_tables_fix	db
-Beginning of system_tables_fix	func
-Beginning of system_tables_fix	help_category
-Beginning of system_tables_fix	help_keyword
-Beginning of system_tables_fix	help_relation
-Beginning of system_tables_fix	help_topic
-Beginning of system_tables_fix	host
-Beginning of system_tables_fix	tables_priv
-Beginning of system_tables_fix	time_zone
-Beginning of system_tables_fix	time_zone_leap_second
-Beginning of system_tables_fix	time_zone_name
-Beginning of system_tables_fix	time_zone_transition
-Beginning of system_tables_fix	time_zone_transition_type
-Beginning of system_tables_fix	user
+ERROR 1060 (42S21) at line 37: Duplicate column name 'File_priv'
+ERROR 1060 (42S21) at line 45: Duplicate column name 'Grant_priv'
+ERROR 1060 (42S21) at line 52: Duplicate column name 'Grant_priv'
+ERROR 1060 (42S21) at line 66: Duplicate column name 'ssl_type'
+ERROR 1061 (42000) at line 81: Duplicate key name 'Grantor'
+ERROR 1054 (42S22) at line 108: Unknown column 'Type' in 'columns_priv'
+ERROR 1060 (42S21) at line 130: Duplicate column name 'type'
+ERROR 1060 (42S21) at line 140: Duplicate column name 'Show_db_priv'
+ERROR 1060 (42S21) at line 157: Duplicate column name 'max_questions'
+ERROR 1060 (42S21) at line 167: Duplicate column name 'Create_tmp_table_priv'
+ERROR 1060 (42S21) at line 187: Duplicate column name 'Password'
+ERROR 1054 (42S22) at line 193: Unknown column 'plugin' in 'where clause'
+ERROR 1146 (42S02) at line 195: Table 'test.plugin' doesn't exist
+ERROR 1146 (42S02) at line 198: Table 'test.plugin' doesn't exist
+ERROR 1146 (42S02) at line 259: Table 'test.general_log' doesn't exist
+ERROR 1146 (42S02) at line 270: Table 'test.slow_log' doesn't exist
+ERROR 1146 (42S02) at line 282: Table 'test.slow_log' doesn't exist
+ERROR 1146 (42S02) at line 284: Table 'test.slow_log' doesn't exist
+ERROR 1146 (42S02) at line 289: Table 'test.plugin' doesn't exist
+ERROR 1054 (42S22) at line 298: Unknown column 'Create_view_priv' in 'where clause'
+ERROR 1054 (42S22) at line 328: Unknown column 'Create_routine_priv' in 'where clause'
+ERROR 1054 (42S22) at line 370: Unknown column 'Create_user_priv' in 'where clause'
+ERROR 1146 (42S02) at line 382: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 386: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 390: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 394: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 398: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 406: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 457: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 462: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 465: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 468: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 473: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 478: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 484: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 487: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 490: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 493: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 499: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 502: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 505: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 508: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 514: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 520: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 522: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 525: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 529: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 534: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 535: Table 'test.proc' doesn't exist
+ERROR 1054 (42S22) at line 541: Unknown column 'Event_priv' in 'where clause'
+ERROR 1146 (42S02) at line 554: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 556: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 558: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 595: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 597: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 598: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 600: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 602: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 605: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 608: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 611: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 614: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 617: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 620: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 623: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 625: Table 'test.event' doesn't exist
+ERROR 1054 (42S22) at line 635: Unknown column 'Trigger_priv' in 'where clause'
+ERROR 1054 (42S22) at line 650: Unknown column 'Create_tablespace_priv' in 'where clause'
+ERROR 1054 (42S22) at line 661: Unknown column 'Truncate_versioning_priv' in 'user'
+ERROR 1054 (42S22) at line 662: Unknown column 'Truncate_versioning_priv' in 'db'
+ERROR 1054 (42S22) at line 665: Unknown column 'Delete_history_priv' in 'where clause'
+ERROR 1054 (42S22) at line 676: Unknown column 'auth_string' in 'user'
+ERROR 1146 (42S02) at line 722: Table 'test.innodb_index_stats' doesn't exist
+ERROR 1146 (42S02) at line 740: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 741: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 742: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 743: Table 'test.proxies_priv' doesn't exist
+ERROR 1146 (42S02) at line 744: Table 'test.proxies_priv' doesn't exist
+ERROR 1146 (42S02) at line 745: Table 'test.proxies_priv' doesn't exist
+ERROR 1146 (42S02) at line 746: Table 'test.servers' doesn't exist
+ERROR 1146 (42S02) at line 747: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 764: Table 'test.column_stats' doesn't exist
+ERROR 1146 (42S02) at line 780: Table 'test.procs_priv' doesn't exist
+ERROR 1146 (42S02) at line 783: Table 'test.roles_mapping' doesn't exist
+ERROR 1146 (42S02) at line 784: Table 'test.plugin' doesn't exist
+ERROR 1146 (42S02) at line 785: Table 'test.servers' doesn't exist
+ERROR 1146 (42S02) at line 791: Table 'test.proc' doesn't exist
+ERROR 1146 (42S02) at line 792: Table 'test.event' doesn't exist
+ERROR 1146 (42S02) at line 793: Table 'test.proxies_priv' doesn't exist
+ERROR 1146 (42S02) at line 800: Table 'test.table_stats' doesn't exist
+ERROR 1146 (42S02) at line 801: Table 'test.column_stats' doesn't exist
+ERROR 1146 (42S02) at line 802: Table 'test.index_stats' doesn't exist
+ERROR 1146 (42S02) at line 865: Table 'test.servers' doesn't exist
+before 1st ALTER	object_name
+before 1st ALTER	db
+before 1st ALTER	host
+before 1st ALTER	user
+before 1st ALTER	func
+before 1st ALTER	tables_priv
+before 1st ALTER	columns_priv
+before 1st ALTER	help_topic
+before 1st ALTER	help_category
+before 1st ALTER	help_relation
+before 1st ALTER	help_keyword
+before 1st ALTER	time_zone_name
+before 1st ALTER	time_zone
+before 1st ALTER	time_zone_transition
+before 1st ALTER	time_zone_transition_type
+before 1st ALTER	time_zone_leap_second
 @hadGrantPriv:=1
 1
 1
-before ALTERing tables_priv to Aria	object_name
-before ALTERing tables_priv to Aria	tables_priv
+before 2nd ALTER	object_name
+before 2nd ALTER	db
+before 2nd ALTER	host
+before 2nd ALTER	user
+before 2nd ALTER	func
+before 2nd ALTER	tables_priv
+before 2nd ALTER	columns_priv
+before 2nd ALTER	help_topic
+before 2nd ALTER	help_category
+before 2nd ALTER	help_relation
+before 2nd ALTER	help_keyword
+before 2nd ALTER	time_zone_name
+before 2nd ALTER	time_zone
+before 2nd ALTER	time_zone_transition
+before 2nd ALTER	time_zone_transition_type
+before 2nd ALTER	time_zone_leap_second
+after 2nd ALTER	object_name
+after 2nd ALTER	db
+after 2nd ALTER	host
+after 2nd ALTER	user
+after 2nd ALTER	func
+after 2nd ALTER	tables_priv
+after 2nd ALTER	columns_priv
+after 2nd ALTER	help_topic
+after 2nd ALTER	help_category
+after 2nd ALTER	help_relation
+after 2nd ALTER	help_keyword
+after 2nd ALTER	time_zone_name
+after 2nd ALTER	time_zone
+after 2nd ALTER	time_zone_transition
+after 2nd ALTER	time_zone_transition_type
+after 2nd ALTER	time_zone_leap_second
+before 3rd ALTER	object_name
+before 3rd ALTER	db
+before 3rd ALTER	host
+before 3rd ALTER	user
+before 3rd ALTER	func
+before 3rd ALTER	tables_priv
+before 3rd ALTER	columns_priv
+before 3rd ALTER	help_topic
+before 3rd ALTER	help_category
+before 3rd ALTER	help_relation
+before 3rd ALTER	help_keyword
+before 3rd ALTER	time_zone_name
+before 3rd ALTER	time_zone
+before 3rd ALTER	time_zone_transition
+before 3rd ALTER	time_zone_transition_type
+before 3rd ALTER	time_zone_leap_second
+before 4th ALTER	object_name
+before 4th ALTER	db
+before 4th ALTER	host
+before 4th ALTER	user
+before 4th ALTER	func
+before 4th ALTER	tables_priv
+before 4th ALTER	columns_priv
+before 4th ALTER	help_topic
+before 4th ALTER	help_category
+before 4th ALTER	help_relation
+before 4th ALTER	help_keyword
+before 4th ALTER	time_zone_name
+before 4th ALTER	time_zone
+before 4th ALTER	time_zone_transition
+before 4th ALTER	time_zone_transition_type
+before 4th ALTER	time_zone_leap_second
+after 4th ALTER	object_name
+after 4th ALTER	db
+after 4th ALTER	host
+after 4th ALTER	func
+after 4th ALTER	tables_priv
+after 4th ALTER	columns_priv
+after 4th ALTER	help_topic
+after 4th ALTER	help_category
+after 4th ALTER	help_relation
+after 4th ALTER	help_keyword
+after 4th ALTER	time_zone_name
+after 4th ALTER	time_zone
+after 4th ALTER	time_zone_transition
+after 4th ALTER	time_zone_transition_type
+after 4th ALTER	time_zone_leap_second
 @hadShowDbPriv:=1
 1
 1
-system_tables_fix, before ALTERing user to Aria	object_name
-system_tables_fix, before ALTERing user to Aria	user
-system_tables_fix, before massive ALTER to Aria	object_name
-system_tables_fix, before massive ALTER to Aria	columns_priv
-system_tables_fix, before massive ALTER to Aria	db
-system_tables_fix, before massive ALTER to Aria	help_keyword
-system_tables_fix, before massive ALTER to Aria	help_relation
-system_tables_fix, before massive ALTER to Aria	host
-system_tables_fix, before massive ALTER to Aria	tables_priv
-system_tables_fix, before massive ALTER to Aria	time_zone
-system_tables_fix, before massive ALTER to Aria	time_zone_leap_second
-system_tables_fix, before massive ALTER to Aria	time_zone_name
-system_tables_fix, before massive ALTER to Aria	time_zone_transition
-system_tables_fix, before massive ALTER to Aria	time_zone_transition_type
-system_tables_fix, before massive ALTER to Aria	user
-system_tables_fix, after massive ALTER to Aria	object_name
-system_tables_fix, after massive ALTER to Aria	host
-system_tables_fix, after creating global_priv and dropping user	object_name
-system_tables_fix, after creating global_priv and dropping user	global_priv
 show tables;
 Tables_in_db
 column_stats
