@@ -45,10 +45,18 @@ CREATE TABLE time_zone_transition ( Time_zone_id int unsigned NOT NULL, Transiti
 CREATE TABLE time_zone_transition_type ( Time_zone_id int unsigned NOT NULL, Transition_type_id int unsigned NOT NULL, Offset int signed DEFAULT 0 NOT NULL, Is_DST tinyint unsigned DEFAULT 0 NOT NULL, Abbreviation char(8) DEFAULT '' NOT NULL, PRIMARY KEY TzIdTrTId (Time_zone_id, Transition_type_id) ) engine=MyISAM CHARACTER SET utf8 comment='Time zone transition types';
 CREATE TABLE time_zone_leap_second ( Transition_time bigint signed NOT NULL, Correction int signed NOT NULL, PRIMARY KEY TranTime (Transition_time) ) engine=MyISAM CHARACTER SET utf8 comment='Leap seconds information for time zones';
 
+show create database test;
+
 # Run the mysql_fix_privilege_tables.sql using "mysql --force"
 --exec $MYSQL --force test < $MYSQL_FIX_PRIVILEGE_TABLES > $MYSQL_TMP_DIR/priv.out
 --cat_file $MYSQL_TMP_DIR/priv.out
 --remove_file $MYSQL_TMP_DIR/priv.out
+
+show create database test;
+show variables like '%character%';
+show variables like '%collat%';
+exec locale;
+
 
 # Dump the tables that should be compared
 -- source include/system_db_struct.inc

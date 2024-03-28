@@ -70,19 +70,10 @@ ADD x509_issuer BLOB NOT NULL,
 ADD x509_subject BLOB NOT NULL;
 
 SELECT "before 4th ALTER", object_name FROM performance_schema.objects_summary_global_by_type WHERE object_schema='test';
-
-SELECT VARIABLE_VALUE INTO @lostval FROM INFORMATION_SCHEMA.GLOBAL_STATUS WHERE VARIABLE_NAME = 'PERFORMANCE_SCHEMA_DIGEST_LOST';
-
+show create table user;
 ALTER TABLE user MODIFY ssl_type enum('','ANY','X509', 'SPECIFIED') DEFAULT '' NOT NULL;
-
 SELECT "after 4th ALTER", object_name FROM performance_schema.objects_summary_global_by_type WHERE object_schema='test';
-
-SELECT VARIABLE_VALUE - @lostval FROM INFORMATION_SCHEMA.GLOBAL_STATUS WHERE VARIABLE_NAME = 'PERFORMANCE_SCHEMA_DIGEST_LOST';
-select 'variables:';
-show variables like 'performance%';
-select count(*) from performance_schema.setup_objects;
-select count(*) from performance_schema.events_statements_summary_by_digest;
-select count(*) from performance_schema.objects_summary_global_by_type;
+show create table user;
 
 #
 # tables_priv
